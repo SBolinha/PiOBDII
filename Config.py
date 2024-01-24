@@ -28,13 +28,13 @@ import pygame
 import Visual
 import Button
 
-
+PiOBDIIpath = "~/PiOBDII-master/"
 
 # Configuration default values.
 ConfigValues = {
 	"FontName" : "freemono",
 	"SerialPort" : "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A800eaG9-if00-port0",
-	"Vehicle" : "DATA/TroubleCodes-R53_Cooper_S.txt",
+	"Vehicle" : PiOBDIIpath + "DATA/TroubleCodes-R53_Cooper_S.txt",
 	"Debug": "OFF",
 }
 
@@ -44,7 +44,7 @@ ConfigValues = {
 #/* Load configuration from disk. */
 #/*********************************/
 def LoadConfig():
-	if os.path.isfile("CONFIG/CONFIG.CFG"):
+	if os.path.isfile(PiOBDIIpath + "CONFIG/CONFIG.CFG"):
 		File = open("CONFIG/CONFIG.CFG", 'r')
 		TextLine = "."
 		while TextLine != "":
@@ -66,7 +66,7 @@ def LoadConfig():
 #/* Save configuration to disk. */
 #/*******************************/
 def SaveConfig():
-	File = open("CONFIG/CONFIG.CFG", 'w')
+	File = open(PiOBDIIpath + "CONFIG/CONFIG.CFG", 'w')
 	File.write("FontName=" + str(ConfigValues["FontName"]) + "\n")
 	File.write("SerialPort=" + str(ConfigValues["SerialPort"]) + "\n")
 	File.write("Vehicle=" + str(ConfigValues["Vehicle"]) + "\n")
@@ -91,13 +91,13 @@ class Config(Visual.Visual):
 		# Buttons displayed on the confirm dialog.
 		self.Buttons = {
 			# Config covers full display with this button to prevent other user interface being used while dialog visible.
-			"UI_BLOCKER" : Button.Button(self.ThisSurface, "UI_BLOCKER", Visual.PRESS_NONE, -self.xLen, -self.yLen, self.DisplayXLen, self.DisplayYLen, "UI_BLOCKER"),
-			"SELECT_FONT" : Button.Button(self.ThisSurface, "SELECT_FONT", Visual.PRESS_DOWN, Visual.X_MARGIN, 10, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Select.png"),
-			"SELECT_SERIAL_PORT" : Button.Button(self.ThisSurface, "SELECT_SERIAL_PORT", Visual.PRESS_DOWN, Visual.X_MARGIN, 85, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Select.png"),
-			"SELECT_VEHICLE" : Button.Button(self.ThisSurface, "SELECT_VEHICLE", Visual.PRESS_DOWN, Visual.X_MARGIN, 160, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Select.png"),
-			"SELECT_DEBUG" : Button.Button(self.ThisSurface, "SELECT_DEBUG", Visual.PRESS_DOWN, Visual.X_MARGIN, 235, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Select.png"),
-			"SAVE_CONFIG" : Button.Button(self.ThisSurface, "SAVE_CONFIG", Visual.PRESS_DOWN, Button.Visual.BUTTON_HEIGHT, self.yLen - 1.5*Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Config.png"),
-			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, self.xLen - 2*Button.Visual.BUTTON_HEIGHT, self.yLen - 1.5*Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Close.png"),
+			"UI_BLOCKER" : Button.Button(self.ThisSurface, "UI_BLOCKER", Visual.PRESS_NONE, -self.xLen, -self.yLen, self.DisplayXLen, self.DisplayYLen, PiOBDIIpath + "UI_BLOCKER"),
+			"SELECT_FONT" : Button.Button(self.ThisSurface, "SELECT_FONT", Visual.PRESS_DOWN, Visual.X_MARGIN, 10, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Select.png"),
+			"SELECT_SERIAL_PORT" : Button.Button(self.ThisSurface, "SELECT_SERIAL_PORT", Visual.PRESS_DOWN, Visual.X_MARGIN, 85, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Select.png"),
+			"SELECT_VEHICLE" : Button.Button(self.ThisSurface, "SELECT_VEHICLE", Visual.PRESS_DOWN, Visual.X_MARGIN, 160, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Select.png"),
+			"SELECT_DEBUG" : Button.Button(self.ThisSurface, "SELECT_DEBUG", Visual.PRESS_DOWN, Visual.X_MARGIN, 235, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Select.png"),
+			"SAVE_CONFIG" : Button.Button(self.ThisSurface, "SAVE_CONFIG", Visual.PRESS_DOWN, Button.Visual.BUTTON_HEIGHT, self.yLen - 1.5*Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Config.png"),
+			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, self.xLen - 2*Button.Visual.BUTTON_HEIGHT, self.yLen - 1.5*Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, Button.Visual.BUTTON_HEIGHT, PiOBDIIpath + "IMAGE:ICONS/Close.png"),
 		}
 
 		self.Buttons["UI_BLOCKER"].SetVisible(False)
@@ -153,9 +153,9 @@ class Config(Visual.Visual):
 
 		# Find vehicle names.
 		try:
-			for VehicleName in os.listdir("./DATA/"):
+			for VehicleName in os.listdir(PiOBDIIpath + "DATA/"):
 				if VehicleName[:13] == "TroubleCodes-":
-					VehicleNames += "DATA/" + VehicleName + "\n"
+					VehicleNames += PiOBDIIpath + "DATA/" + VehicleName + "\n"
 		except:
 			print("Failed to read: ./")
 
