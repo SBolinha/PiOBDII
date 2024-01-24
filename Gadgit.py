@@ -31,7 +31,7 @@ import ELM327
 import Visual
 import Button
 
-
+PiOBDIIpath = "~/PiOBDII-master/"
 
 # Selectable styles of a gague.
 STYLE_GAGUE = 0
@@ -48,10 +48,10 @@ class Gadgit(Visual.Visual):
 
 		# Buttons displayed on a gague.
 		self.Buttons = {
-			"SELECT" : Button.Button(self.ThisSurface, "SELECT", Visual.PRESS_DOWN, 0, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Select.png"),
-			"SWITCH" : Button.Button(self.ThisSurface, "SWITCH", Visual.PRESS_DOWN, (xLen - Visual.BUTTON_HEIGHT) * 2/6, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Switch.png"),
-			"DRAG" : Button.Button(self.ThisSurface, "DRAG", Visual.PRESS_DOWN, (xLen - Visual.BUTTON_HEIGHT) * 4/6, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Drag.png"),
-			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, xLen - Visual.BUTTON_HEIGHT, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Close.png"),
+			"SELECT" : Button.Button(self.ThisSurface, "SELECT", Visual.PRESS_DOWN, 0, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, f"{PiOBDIIpath}IMAGE:ICONS/Select.png"),
+			"SWITCH" : Button.Button(self.ThisSurface, "SWITCH", Visual.PRESS_DOWN, (xLen - Visual.BUTTON_HEIGHT) * 2/6, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, f"{PiOBDIIpath}IMAGE:ICONS/Switch.png"),
+			"DRAG" : Button.Button(self.ThisSurface, "DRAG", Visual.PRESS_DOWN, (xLen - Visual.BUTTON_HEIGHT) * 4/6, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, f"{PiOBDIIpath}IMAGE:ICONS/Drag.png"),
+			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, xLen - Visual.BUTTON_HEIGHT, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, f"{PiOBDIIpath}IMAGE:ICONS/Close.png"),
 		}
 
 		# Attributes applied to the various styles of gague.
