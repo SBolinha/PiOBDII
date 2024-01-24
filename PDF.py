@@ -20,7 +20,7 @@
 #/* Create save and print PDF reports.                                      */
 #/***************************************************************************/
 
-
+PiOBDIIpath = "~/PiOBDII-master/"
 
 import os
 import io
@@ -76,7 +76,7 @@ class PDF:
 			NewPdfPage = PyPDF2.pdf.PdfFileReader(ThisPageBytes)
 			SavePDF.appendPagesFromReader(NewPdfPage)
 		# Save PDF report to disk.
-		File = open(FileName, "wb")
+		File = open(PiOBDIIpath + FileName, "wb")
 		SavePDF.write(File)
 		File.close()
 
