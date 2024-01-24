@@ -27,7 +27,7 @@ import pygame
 import Visual
 import Button
 
-
+PiOBDIIpath = "~/PiOBDII-master/"
 
 class Select(Visual.Visual):
 	def __init__(self, ThisSurface, Name, Text):
@@ -48,7 +48,7 @@ class Select(Visual.Visual):
 		self.Buttons = {
 			# Confirm covers full display with this button to prevent other user interface being used while dialog visible.
 			"UI_BLOCKER" : Button.Button(self.ThisSurface, "UI_BLOCKER", Visual.PRESS_NONE, -self.xLen, -self.yLen, self.DisplayXLen, self.DisplayYLen, "UI_BLOCKER"),
-			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, self.xLen - Visual.BUTTON_HEIGHT, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:ICONS/Close.png"),
+			"CLOSE" : Button.Button(self.ThisSurface, "CLOSE", Visual.PRESS_DOWN, self.xLen - Visual.BUTTON_HEIGHT, 0, Visual.BUTTON_HEIGHT, Visual.BUTTON_HEIGHT, "IMAGE:" + PiOBDIIpath + "ICONS/Close.png"),
 		}
 
 		self.Buttons["UI_BLOCKER"].SetVisible(False)
