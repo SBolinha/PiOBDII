@@ -79,7 +79,7 @@ import Confirm
 import Display
 import PDF
 
-
+PiOBDIIpath = "~/PiOBDII-master/"
 
 DISPLAY_PERIOD = 100
 TIMER_PERIOD = 500
@@ -137,10 +137,10 @@ def PrintPdfReport():
 	Result =  ""
 
 	# Save PDF Report.
-	Result = SavePdfReport("SAVE/PRINT.PDF")
+	Result = SavePdfReport(f"{PiOBDIIpath}SAVE/PRINT.PDF")
 	# Send PDF report to the default printer.
 	try:
-		subprocess.call("lpr SAVE/PRINT.PDF")
+		subprocess.call(f"lpr {PiOBDIIpath}SAVE/PRINT.PDF")
 	except Exception as Catch:
 		Result = str(Catch)
 
